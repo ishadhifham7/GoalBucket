@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { DashboardPage } from "../pages/dashboard/DashboardPage";
+import { AppRoutes } from "./routes";
 
 export const App: React.FC = () => {
   // Optional: backend ping for testing
@@ -20,7 +21,7 @@ export const App: React.FC = () => {
       </div> */}
 
       {/* Dashboard UI */}
-      <DashboardPage />
+      <AppRoutes />
     </div>
   );
 };
