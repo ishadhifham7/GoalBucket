@@ -12,7 +12,7 @@ export const BalanceCard: React.FC = () => {
     <div className="bg-[#111827] rounded-xl p-6 w-full max-w-3xl mx-auto">
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-white text-xl font-bold flex items-center">
-          🐷 Total Savings
+          Total Savings
         </h2>
         <span className="text-white font-bold text-lg">
           {progress.toFixed(1)}%

@@ -14,7 +14,7 @@ export const DashboardPage: React.FC = () => {
           <p className="text-gray-400 mt-1">Track your savings and goals</p>
         </div>
         <button className="bg-[#10B981] hover:bg-green-500 text-white px-5 py-2 rounded-xl font-semibold flex items-center gap-2">
-          ➕ Add New Bucket
+          ➕ Add Income
         </button>
       </div>
 
