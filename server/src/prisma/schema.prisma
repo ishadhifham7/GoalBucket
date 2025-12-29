@@ -1,0 +1,63 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+//////////////////////
+// MODELS
+//////////////////////
+
+
+model Wallet {
+  id        String   @id @default(uuid())
+  balance   Float    @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  buckets      Bucket[]
+  transactions Transaction[]
+}
+
+model Bucket {
+  id            String   @id @default(uuid())
+  title         String
+  description   String?
+  balance       Float    @default(0) // saved amount
+  target        Float
+  estCompletion DateTime
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  wallet   Wallet @relation(fields: [walletId], references: [id], onDelete: Cascade)
+  walletId String
+
+  deposits Transaction[] @relation("BucketDeposits")
+}
+
+model Transaction {
+  id        String          @id @default(uuid())
+  type      TransactionType
+  amount    Float
+  date      DateTime        @default(now())
+  createdAt DateTime        @default(now())
+
+  wallet   Wallet @relation(fields: [walletId], references: [id], onDelete: Cascade)
+  walletId String
+
+  // ONLY used for DEPOSIT
+  bucket   Bucket? @relation("BucketDeposits", fields: [bucketId], references: [id], onDelete: SetNull)
+  bucketId String?
+}
+
+//////////////////////
+// ENUMS
+//////////////////////
+
+enum TransactionType {
+  INCOME
+  EXPENSE
+  DEPOSIT
+}

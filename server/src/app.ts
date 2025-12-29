@@ -23,5 +23,12 @@ export function buildApp() {
     };
   });
 
+  // dashboard check
+  app.get("/", async () => {
+    return {
+      message: "You are in server dashboard",
+    };
+  });
+
   return app;
 }
