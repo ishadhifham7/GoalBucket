@@ -1,12 +1,18 @@
 import React from "react";
-import { totalSavings } from "../../../data/wallet.mock";
-
-function formatCurrency(amount: number) {
-  return `Rs.${amount.toLocaleString()}`;
-}
+import { useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "../../../store/hook";
+import { loadWallet } from "../../../store/wallet/wallet.thunk";
+import type { AsyncThunkAction, AsyncThunkConfig } from "@reduxjs/toolkit";
 
 export const BalanceCard: React.FC = () => {
-  const progress = (totalSavings.saved / totalSavings.target) * 100;
+  const dispatch = useAppDispatch();
+  const { balance, target } = useAppSelector((state) => state.wallet);
+
+  useEffect(() => {
+    dispatch(loadWallet());
+  }, [dispatch]);
+
+  const progress = (balance / target) * 100;
 
   return (
     <div className="bg-[#111827] rounded-xl p-6 w-full max-w-3xl mx-auto">
@@ -25,10 +31,11 @@ export const BalanceCard: React.FC = () => {
         ></div>
       </div>
       <div className="flex justify-between text-gray-400 font-semibold">
-        <span className="text-[#10B981]">
-          Saved: {formatCurrency(totalSavings.saved)}
-        </span>
-        <span>Target: {formatCurrency(totalSavings.target)}</span>
+        <span className="text-[#10B981]">Saved: {balance}</span>
+        <div>
+          <div></div>
+          <span>Target: {target}</span>
+        </div>
       </div>
     </div>
   );

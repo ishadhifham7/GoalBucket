@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "Wallet" ADD COLUMN     "target" DOUBLE PRECISION NOT NULL DEFAULT 0;

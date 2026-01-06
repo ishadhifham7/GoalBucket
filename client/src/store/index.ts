@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import walletReducer from "./wallet.store";
+import walletReducer from "./wallet/wallet.slice";
 import bucketReducer from "./bucket.store";
 import transactionReducer from "./transaction.store";
 

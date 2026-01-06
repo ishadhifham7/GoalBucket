@@ -13,6 +13,7 @@ datasource db {
 
 model Wallet {
   id        String   @id @default(uuid())
+  target  Float   @default(0) 
   balance   Float    @default(0)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
